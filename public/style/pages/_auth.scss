@@ -1,0 +1,36 @@
+.page-auth {
+    .row-login {
+        min-height: 70vh;
+    }
+
+    .section-store-auth {
+        h2 {
+            font-weight: 200;
+            font-size: 28px;
+            margin-top: 0;
+            color: #0c0d36;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            background: #f3f3f3;
+        }
+
+        .btn-signup {
+            @include button-variant(#f3f3f3, transparent);
+            color: rgb(71, 71, 71);
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .btn-success {
+            color: #f7f7f7;
+            background: #3eb3f7;
+            border-radius: 20px;
+            border: 2px solid #3eb3f7;
+            box-sizing: border-box;
+            text-align: center;
+            display: block;
+        }
+    }
+}
