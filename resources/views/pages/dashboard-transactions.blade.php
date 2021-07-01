@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Transaction  
 @endsection
 
 @section('content')
@@ -44,7 +44,7 @@
                         >
                             @foreach ($buyTransactions as $transaction)
                                 <a 
-                                href="{{ route('dashboard-transaction-details', $transaction->id) }}" 
+                                href="{{ route('dashboard-transaction-details', $transaction->transaction->id) }}" 
                                 class="card card-list d-block"
                                 >
                                 <div class="card-body">
@@ -59,6 +59,7 @@
                                             {{ $transaction->product->name }}
                                         </div>
                                         <div class="col-md-3">
+                                             {{ $transaction->transaction->user->name ?? '' }}
                                         </div>
                                         <div class="col-md-3">
                                             {{ $transaction->created_at }}

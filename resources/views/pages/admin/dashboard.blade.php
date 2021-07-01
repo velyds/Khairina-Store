@@ -51,6 +51,25 @@
                     </div>
                 </div>
                 </div>
+                <div class="card-body">
+                    <div class="card shadow mb-4">
+                        <div class="col-12">
+                                <h4 style="text-align:center; padding:20px">Hello Admin</h4>
+                            </div>
+                        <div class="col-lg-3">
+                            <table class="table">
+                                <tr>
+                                    <th>Nama: </th>
+                                    <td>{{ Auth::user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email: </th>
+                                    <td>{{ Auth::user()->email }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

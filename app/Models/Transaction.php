@@ -18,7 +18,9 @@ class Transaction extends Model
         'transaction_status',
         'total_price',
         'code',
-        'created_at'
+        'created_at',
+        'resi',
+        'couriers'
     ];
 
     /**

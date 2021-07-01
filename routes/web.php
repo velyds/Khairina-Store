@@ -27,6 +27,8 @@ Route::post('/checkout/callback', [App\Http\Controllers\CheckoutController::clas
 Route::get('/success', [App\Http\Controllers\CartController::class, 'success'])->name('success');
 Route::get('/register/success', [App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');
 
+Route::get('/failed', [App\Http\Controllers\CartController::class, 'failed'])->name('failed');
+
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
 Route::post('/search', [App\Http\Controllers\SearchController::class, 'redirect'])->name('search-redirect');
 Route::get('/search/{slug}', [App\Http\Controllers\SearchController::class, 'query'])->name('search-query');

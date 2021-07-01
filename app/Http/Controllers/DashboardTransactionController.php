@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +22,20 @@ class DashboardTransactionController extends Controller
     }
     public function details(Request $request, $id)
     {
-        $transactions = TransactionDetail::with(['transaction.user','product.galleries'])
-                            ->findOrFail($id);
+         $item = Transaction::with(['user'])->findOrFail($id);
+         $transactionDetail = TransactionDetail::with(['product'])->where(['transactions_id' => $id])->get();
+
+         
+         
+        $berat = 0;
+        foreach ($transactionDetail as $TD){
+            $berat += $TD->product->weight * $TD->quantity;
+        }
 
         return view('pages.dashboard-transactions-details',[
-            'transactions' => $transactions
+            'transactions'=> $item,
+            'transactionDetail' => $transactionDetail,
+            'berat' => $berat
         ]);
     }
 

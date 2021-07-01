@@ -12,7 +12,7 @@
     <title>@yield('title')</title>
 
      @method('prepend-style')
-    <link href="/images/logo.png" rel="shortcut icon" />
+    <link href="/images/logo.png" rel="shortcut icon" />    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
     <link href="/style/font-awesome.css" rel="stylesheet" />
@@ -126,14 +126,24 @@
 
             <ul class="navbar-nav d-block d-lg-none">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('dashboard') }}" class="nav-link">
                   Hi,  {{ Auth::user()->name }}
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link d-inline-block">
+                <a href="{{ route('cart') }}" class="nav-link d-inline-block">
                   Cart
               </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('cart') }}"  
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                class="nav-link d-inline-block">
+                  Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
             </li>
           </ul>
         </class>

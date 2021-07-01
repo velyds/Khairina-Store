@@ -16,20 +16,8 @@
     }
 }
 
-.nav-item {
-    .btn-success {
-        color: #f7f7f7;
-        background: #3eb3f7;
-        border-radius: 20px;
-        border: 2px solid #3eb3f7;
-        box-sizing: border-box;
-        text-align: center;
-        display: block;
-        float: left;
-    }
-}
 .testimonials {
-    background-color: #c4c4c7;
+    background-color: #f7f7f7;
 
     .testimonials_grid h3 {
         margin: 1em 0 0.5em 0;
@@ -91,6 +79,10 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: 600;
+        padding-left: 10px;
+    }
+    .mail-grid-text-info p {
+        padding-left: 10px;
     }
 
     .mail-grid-icon {
@@ -110,5 +102,13 @@
         width: 70%;
         padding-top: 15px;
         text-align: left;
+    }
+
+    .footer-top-w3layouts-grid-sec {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-bottom: 25px !important;
     }
 }

@@ -45,7 +45,10 @@
                                     name="email" 
                                     value="{{ old('email') }}" 
                                     required 
-                                    autocomplete="email">
+                                    autocomplete="email"
+                                    onkeydown="preventNumberInput(event)" 
+                                    onkeyup="preventNumberInput(event)" 
+                                    autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +63,8 @@
                                     class="form-control @error('password') is-invalid @enderror" 
                                     name="password" 
                                     required 
-                                    autocomplete="new-password">
+                                    autocomplete="new-password" 
+                                    maxlength="13">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -75,7 +79,8 @@
                                  class="form-control @error('password_confirmation') is-invalid @enderror" 
                                  name="password_confirmation" 
                                  required 
-                                 autocomplete="new-password">
+                                 autocomplete="new-password"
+                                 maxlength="13">
                                     @error('password_confirmation')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

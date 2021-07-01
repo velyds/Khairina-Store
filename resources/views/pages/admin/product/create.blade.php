@@ -55,8 +55,20 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Berat produk</label>
+                                                <input type="number" name="weight" class="form-control" v-model="weight" v-on:input="updateBerat" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Harga Produk</label>
                                                 <input type="number" name="price" class="form-control" v-model="harga" v-on:input="updateHarga" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Warna Produk</label>
+                                                        <input type="text" data-role="tagsinput" name="colors" class="form-control" data-placeholder="Add a color... (then press comma)">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -85,6 +97,11 @@
 
 @push('addon-script')
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        for (const el of document.querySelectorAll('.tagin')) {
+            tagin (the)
+        }
+    </script>
     <script src="/vendor/vue/vue.js"></script>
     <script>
       var createProduct = new Vue ({

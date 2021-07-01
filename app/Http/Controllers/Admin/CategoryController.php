@@ -124,7 +124,10 @@ class CategoryController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category','public');
+
+        if ($request->file('photo')) {
+            $data['photo'] = $request->file('photo')->store('assets/category','public');
+        }
         
         $item = Category::findOrFail($id);
 

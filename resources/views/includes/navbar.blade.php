@@ -6,27 +6,7 @@
     <a href="{{ route('home') }}" class="navbar-brand"> 
         <img src="/images/logokhairina.png" alt="Logo" />
     </a>
-    <button 
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a href="{{ route('home') }}" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('categories') }}" class="nav-link">Categories</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('contact') }}" class="nav-link">Contact</a>
-        </li>
-        </ul>
-    <ul class="navbar-nav ml-auto d-none d-lg-flex">
+    <ul class="navbar-nav mr-auto d-none d-lg-flex">
         <li class="nav-item">
             <form action="{{ Route('search-redirect') }}" method="POST">
                 @csrf
@@ -36,26 +16,43 @@
                     placeholder="Search..."
                     class="w-full -ml-8 pl-10 px-4 py-2 border rounded-pill focus:outline-none focus:bg-gray-600"
                     id="search"
-                    value="">   
-                    
+                    value="">  
                 <input type="submit" value="" style="visibility: hidden">
             </form>
+        </li>   
+    </ul>
+      <button 
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+     <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a href="{{ route('home') }}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('categories') }}" class="nav-link">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('contact') }}" class="nav-link">Contact</a>
             </li>
         @guest
-        <li class="nav-item">
-            <a href="{{ route('register') }}" class="nav-link">Sign Up</a>
-        </li>
-        <li class="nav-item">
-            <a
-            href="{{ route('login') }}"
-            class="btn btn-success nav-link px-4 text-white"
-            >Sign In</a
-            >
-        </li>
+            <li class="nav-item">
+                <a
+                href="{{ route('login') }}"
+                class="btn btn-success nav-link px-4 text-white"
+                style="background: #3eb3f7;border-radius: 20px;border: 2px solid #3eb3f7;"
+                >Sign In</a
+                >
+            </li>
         @endguest
     </ul>
+    @auth
 
-@auth
 <ul class="navbar-nav d-none d-lg-flex">
     <li class="nav-item dropdown">
     <a
@@ -101,9 +98,9 @@
                 @endif
             </a>
         </li>
-        </ul>
+    </ul>
 
-        <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
         <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item">
                 <a href="{{ route('search-redirect') }}" class="nav-link">
@@ -111,13 +108,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link">
-                    Helo, {{ Auth::user()->name }}
+                <a href="{{ route('cart') }}" class="nav-link">
+                    Cart
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('cart') }}" class="nav-link d-inline-block">
-                    Cart
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                    Helo, {{ Auth::user()->name }}
                 </a>
             </li>
         </ul>

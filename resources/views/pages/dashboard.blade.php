@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                 <h5 class="mb-3">Recent Transactions</h5>
                @foreach ($transaction_data as $transaction)
                     <a 
-                    href="{{ route('dashboard-transaction-details', $transaction->id) }}" 
+                    href="{{ route('dashboard-transaction-details', $transaction->transaction->id) }}" 
                     class="card card-list d-block"
                     >
                     <div class="card-body">

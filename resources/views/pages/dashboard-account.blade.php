@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - My Account    
 @endsection
 
 @section('content')
@@ -9,6 +9,12 @@
 <div class="container-fluid">
     <div class="dashboard-heading">
     <h2 class="dashboard-title">My Account</h2>
+@if ($message = Session::get('alamat'))
+<div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>    
+    <strong>{{ $message }}</strong>
+</div>
+@endif
         <p class="dashboard-subtitle">
             Update your current profile
         </p>
@@ -41,10 +47,23 @@
                             type="email" 
                             class="form-control" 
                             id="email" 
-                            name="email" 
+                            name="email"
+                            onkeydown="preventNumberInput(event)" 
+                            onkeyup="preventNumberInput(event)" 
+                            autofocus 
                             value="{{ $user->email }}">
                         </div>
                     </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Select address</label>
+                          <select name="selectAddress" id="selectAddress" class="form-control" v-model="addressName">
+                            <option>Pilih alamat</option>
+                              <option value="rumah">Rumah</option>
+                              <option value="kantor">Kantor</option>
+                            </select>
+                        </div>
+                    </div>-->
                     <div class="col-md-6">
                         <div class="form-group">
                         <label for="address_one">Address 1</label>
@@ -52,7 +71,8 @@
                             type="text" 
                             class="form-control" 
                             id="address_one" 
-                            name="address_one" 
+                            name="address_one"
+                            placeholder="Cont: JL.Cendana Raya No.1 Rt.00/Rw.00" 
                             value="{{ $user->address_one }}">
                         </div>
                     </div>
@@ -63,7 +83,8 @@
                             type="text" 
                             class="form-control" 
                             id="address_two" 
-                            name="address_two" 
+                            name="address_two"
+                            placeholder="Cont: Kel.Tangerang, Kec.Tangerang" 
                             value="{{ $user->address_two }}">
                         </div>
                     </div>
@@ -92,7 +113,8 @@
                             type="number" 
                             class="form-control" 
                             id="zip_code" 
-                            name="zip_code" 
+                            name="zip_code"
+                            onkeypress="return nomorPostalCode(event)"
                             value="{{ $user->zip_code }}">
                         </div>
                     </div>
@@ -104,17 +126,21 @@
                             class="form-control" 
                             id="country" 
                             name="country" 
-                            value="{{ $user->country }}">
+                            maxlength="15"
+                            onkeydown="preventNumberInput(event)" 
+                            onkeyup="preventNumberInput(event)" 
+                            value="Indonesia">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="phone_number">Mobile</label>
                             <input 
-                            type="number" 
+                            type="text" 
                             class="form-control" 
                             id="phone_number" 
-                            name="phone_number" 
+                            name="phone_number"
+                            onkeypress="return nomorTelepon(event)"
                             value="{{ $user->phone_number }}">
                         </div>
                     </div>
@@ -124,7 +150,7 @@
                         <button 
                             type="submit" 
                             class="btn btn-success px-5"
-                        >
+                            >
                             Save Now
                         </button>
                         </div>
@@ -155,8 +181,8 @@
     data: {
         provinces: null,
         regencies:null,
-        provinces_id:null,
-        regencies_id:null,
+        provinces_id: '{{ $user->provinces_id }}' || null,
+        regencies_id: '{{ $user->regencies_id }}' || null,
         courierName: null,
         services: null,
         ongkir: 0
@@ -167,6 +193,7 @@
               axios.get('{{ route('api-provinces') }}')
               .then(function(response){
               self.provinces = response.data;
+                self.getRegenciesData()
             })
           },
           getRegenciesData(){
@@ -178,7 +205,7 @@
             })
           },
           getCourier(){
-            var self = this;
+            var self = this; 
             data = {
               destination: this.regencies_id,
               courier: this.courierName
@@ -217,10 +244,47 @@
         e.preventDefault();
       }
     }
+    function nomorTelepon(e) {
+        const nt = document.getElementById("phone_number").value
+
+        if (nt.length >= 13) {
+            return false
+        }
+
+        e = e ? e : window.event;
+        let keyCode = e.which ? e.which : e.keyCode
+        if (keyCode > 31 && (keyCode < 48 || keyCode > 57)) return false
+        return true
+    }
     $(document).ready(function() {
       $('#text_field').keypress(function(e) {
         preventNumberInput(e);
       });
     })
-</script>  
+</script> 
+<script>
+    function preventNumberInput(e) {
+      var keyCode = (e.keyCode ? e.keyCode : e.which);
+      if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107) {
+        e.preventDefault();
+      }
+    }
+    function nomorPostalCode(e) {
+        const nt = document.getElementById("zip_code").value
+
+        if (nt.length >= 5) {
+            return false
+        }
+
+        e = e ? e : window.event;
+        let keyCode = e.which ? e.which : e.keyCode
+        if (keyCode > 31 && (keyCode < 48 || keyCode > 57)) return false
+        return true
+    }
+    $(document).ready(function() {
+      $('#text_field').keypress(function(e) {
+        preventNumberInput(e);
+      });
+    })
+</script>   
 @endpush

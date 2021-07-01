@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
               data-aos="fade-up"
               data-aos-delay="{{ $incrementProduct+= 100 }}"
           >
-              <a href="{{ url('detail', $product->slug) }}" class="component-products d-block">
+              <a href="{{ url('details', $product->slug) }}" class="component-products d-block">
                   <div class="products-thumbnail">
                       <div
                       class="products-image"

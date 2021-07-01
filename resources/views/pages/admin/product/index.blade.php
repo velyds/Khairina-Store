@@ -29,6 +29,7 @@
                                             <th>Nama</th>
                                             <th>Kategori</th>
                                             <th>Stok</th>
+                                            <th>Berat</th>
                                             <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -61,6 +62,7 @@
                 {data:'name', name:'name'},
                 {data:'category.name', name:'category.name'},
                 {data:'stock', name:'stock'},
+                {data:'weight', name:'weight'},
                 {data:'price', name:'price'},
                 {
                     data:'action',

@@ -50,6 +50,18 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Stok Produk</label>
+                                                <input type="number" name="stock" class="form-control" value="{{ $item->stock }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Berat Produk</label>
+                                                <input type="number" name="weight" class="form-control" value="{{ $item->weight }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Harga Produk</label>
                                                 <input type="number" name="price" class="form-control" value="{{ $item->price }}" required>
                                             </div>

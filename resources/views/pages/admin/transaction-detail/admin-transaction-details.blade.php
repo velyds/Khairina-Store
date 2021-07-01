@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')
@@ -19,39 +19,76 @@
                         <div class="col-12">
                         <div class="card">
                             <div class="card-body">
+
+                                {{-- Products List --}}
+                                <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Foto</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Weight</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($transactionDetail as $index => $TD) 
+                                    <tr>
+                                            <td>{{ ++$index }}</td>
+                                            <td>
+                                                @if ($TD->product->galleries)
+                                                <img src="{{ Storage::url($TD->product->galleries->first()->photos) }}" 
+                                                alt=""
+                                                height="100"
+                                                width="100"
+                                                >
+                                                @endif
+                                            </td>
+                                            <td>{{ $TD->product->name }}</td>
+                                            <td>{{ $TD->product->price }}</td>
+                                            <td>{{ $TD->product->weight }}</td>
+                                            <td>{{ $TD->quantity }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                             <div class="row">
-                                <div class="col-12 col-md-4">
-                                <img 
-                                    src="{{ Storage::url($transactions->product->galleries->first()->photos ?? '') }}" 
-                                    class="w-100 mb-3" 
-                                    alt="foto"
-                                />
-                                </div>
-                                <div class="col-12 col-md-8">
+                                <div class="col-12 col-md-12">
                                     <div class="row">
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-4">
                                             <div class="product-title">Customer Name</div>
-                                                <div class="product-subtitle">{{ $transactions->transaction->user->name }}</div>
+                                                <div class="product-subtitle">{{ $transactions->user->name }}</div>
                                             </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="product-title">Product Name</div>
-                                                <div class="product-subtitle">{{ $transactions->product->name }}</div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Mobile</div>
+                                                <div class="product-subtitle">{{ $transactions->user->phone_number}}</div>
                                             </div>
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-4">
                                             <div class="product-title">Date of Transaction</div>
                                                 <div class="product-subtitle">{{ $transactions->created_at }}</div>
                                             </div>
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-4">
                                             <div class="product-title">Payment Status</div>
-                                                <div class="product-subtitle text-danger">{{ $transactions->transaction->transaction_status}}</div>
+                                                <div class="product-subtitle text-danger">{{ $transactions->transaction_status}}</div>
                                             </div>
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-4"> 
+                                            <div class="product-title">Couriers</div>
+                                                <div class="product-subtitle">{{ $transactions->couriers }}</div>
+                                            </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Shipping cost</div>
+                                                <div class="product-subtitle">{{ $transactions->shipping_price }}</div>
+                                            </div>
+                                        <div class="col-12 col-md-4">
+                                            <div class="product-title">Total Weight</div>
+                                                <div class="product-subtitle">{{ $berat }}</div>
+                                            </div>
+                                        <div class="col-12 col-md-4">
                                             <div class="product-title">Total Amount</div>
-                                                <div class="product-subtitle">Rp.{{ number_format($transactions->transaction->total_price) }}</div>
+                                                <div class="product-subtitle">Rp.{{ number_format($transactions->total_price) }}</div>
                                             </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="product-title">Mobile</div>
-                                                <div class="product-subtitle">{{ $transactions->transaction->user->phone_number}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -61,71 +98,66 @@
                             @csrf
                                 <div class="row">
                                     <div class="col-12 mt-4">
+                                             
+                                    <div class="col-12 mt-4">
                                         <h5>Shipping Infomation</h5>
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Address I</div>
-                                                    <div class="product-subtitle">{{ $transactions->transaction->user->address_one }}</div>
+                                                    <div class="product-subtitle">{{ $transactions->user->address_one }}</div>
                                                 </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Address II</div>
-                                                    <div class="product-subtitle">{{ $transactions->transaction->user->address_two }}</div>
+                                                    <div class="product-subtitle">{{ $transactions->user->address_two }}</div>
                                                 </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Province</div>
                                                     <div class="product-subtitle">
-                                                        {{ App\Models\Province::find($transactions->transaction->user->provinces_id)->province }}
+                                                        {{ App\Models\Province::find($transactions->user->provinces_id)->province }}
                                                     </div>
                                                 </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                     <div class="product-subtitle">
-                                                        {{ App\Models\City::find($transactions->transaction->user->regencies_id)->city_name }}
+                                                        {{ App\Models\City::find($transactions->user->regencies_id)->city_name }}
                                                     </div>
                                                 </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">{{ $transactions->transaction->user->zip_code }}</div>
+                                                <div class="product-subtitle">{{ $transactions->user->zip_code }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
-                                                <div class="product-subtitle">{{ $transactions->transaction->user->country }}</div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Mobile</div>
-                                                <div class="product-subtitle">{{ $transactions->transaction->user->phone_number }}</div>
+                                                <div class="product-subtitle">{{ $transactions->user->country }}</div>
                                             </div>
                                         </div> 
+                                    </div>
+
                                         <div class="col-12 col-md-3">
                                                 <div class="product-title">Shipping Status</div>
-                                                <select name="shipping_status" class="form-control">
-                                                    <option value="PENDING" {{ $transactions->transaction->transaction_status == 'PENDING' ? 'selected' : '' }}>PENDING</option>
-                                                    <option value="SHIPPING" {{ $transactions->transaction->transaction_status == 'SHIPPING' ? 'selected' : '' }}>SHIPPING</option>
-                                                    <option value="SUCCESS" {{ $transactions->transaction->transaction_status == 'SUCCESS' ? 'selected' : '' }}>SUCCESS</option>
+                                                <select name="transaction_status" class="form-control" v-model="status">
+                                                    <option value="PENDING" {{ $transactions->transaction_status == 'PENDING' ? 'selected' : '' }}>PENDING</option>
+                                                    <option value="SHIPPING" {{ $transactions->transaction_status == 'SHIPPING' ? 'selected' : '' }}>SHIPPING</option>
+                                                    <option value="SUCCESS" {{ $transactions->transaction_status == 'SUCCESS' ? 'selected' : '' }}>SUCCESS</option>
                                                 </select>
                                         </div>
                                             <template v-if="status == 'SHIPPING'">
-                                                <div class="col-md-3">
-                                                    <div class="product-title">Input Resi</div>
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    name="resi"
-                                                    v-model="resi"
-                                                    />
-                                                </div>
+                                                <div class=" col-md-3">
+                                                <label>Input Resi : </label>
+                                                <input type="text" class="form-control" name="resi" v-model="resi" > 
+                                            </div>
                                             <div class="col-md-2">
                                                     <button 
                                                     type="submit" 
                                                     class="btn btn-success btn-block mt-4"
                                                     >Update Resi
                                                     </button>
-                                                </div>
+                                                </div> 
                                             </template>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="row mt-4">
                                     <div class="col-12 text-right">
                                         <button 
@@ -136,8 +168,8 @@
                                         </button>
                                     </div>
                                 </div>
-                        </form>
-                                </div>
+                                      </form>
+                                    </div>
                                 </div>
                              </div>
                         </div>
@@ -156,8 +188,8 @@
         el: '#transactionDetails',
           data: {
             status: 'SHIPPING',
-            resi: 'TGR023456342',
+            resi: '{{  $transactions->resi }}',
           },
-      });
+      });sai
     </script> 
 @endpush 

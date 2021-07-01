@@ -1,7 +1,7 @@
 @extends('layouts.success')
    
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')

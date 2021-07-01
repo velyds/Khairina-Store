@@ -35,7 +35,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nama</th>
-                                                <th>Harga</th>
+                                                <th>Jumlah Harga</th>
                                                 <th>Status</th>
                                                 <th>Dibuat</th>
                                             </tr>

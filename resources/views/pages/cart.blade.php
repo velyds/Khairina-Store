@@ -1,10 +1,11 @@
 @extends('layouts.app')
    
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')
+
 <div class="page-content page-cart">
   <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
     <div class="container">
@@ -13,7 +14,7 @@
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="/index.html">Home</a>
+                <a href="{{ route('home') }}">Home</a>
               </li>
               <li class="breadcrumb-item active">
                 Cart
@@ -25,205 +26,230 @@
     </div>
   </section>
 
-<section class="store-cart">
+<section class="store-cart" id="app">
   <div class="container">
     <div class="row" data-aos="fade-up" data-aos-delay="100">
-      <div class="col-12 table-responsive">
-        <table class="table table-borderless table-cart">
-          <thead>
-            <tr>
-                <td>Image</td>
-                <td>Name</td>
-                <td>Quantity</td>
-                <td>Price</td>
-                <td>Menu</td>
-            </tr>
-              </thead>
-              <tbody>
-                @php $totalPrice = 0 @endphp
-              @foreach ($carts as $index => $cart) 
-                <tr>
-                  <td style="width: 25%;">
-                    @if ($cart->product->galleries)
-                      <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}" 
-                    alt=""
-                    class="cart-image">
-                    @endif
-                  </td>
-                    <td style="width: 35%;">
-                      <div class="product-title items">{{ $cart->product->name }}</div>
-                    </td>
-                    <td style="width: 35%;">
-                        <form action="#">
-                            <div class="quantity">
-                                <button type="button" data-quantity="minus" data-field="quantity{{  $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"><i class="fas fa-minus"></i></button>
-                                <input type="number" name="quantity{{  $index }}" id="quantity{{  $index }}" value="{{  $cart->quantity }}"  data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"/>
-                                <button type="button" data-quantity="plus" data-field="quantity{{  $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"><i class="fas fa-plus"></i></button>
-                            </div>
-                        </form>
-                    </td>
-                    <td style="width: 35%;">
-                      <div class="product-title" id="productPrice{{ $index }}">{{ $cart->product->price }}</div>
-                      <div class="product-subtitle">IDR</div>
-                    </td>
-                    <td style="width: 20%;">
-                      <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
-                      @method('DELETE')
-                      @csrf
-                        <button type="submit" class="btn btn-remove-cart">
-                        X
-                      </button>
-                    </form>
-                </td>
+      <div class="card-body">
+          <div class="card shadow mb-4">
+        <div class="col-12 table-responsive">
+          <table class="table table-borderless table-cart">
+            <thead>
+              <tr>
+                  <td>Image</td>
+                  <td>Name</td>
+                  <td>Quantity</td>
+                  <td>Price</td>
+                  <td></td>
               </tr>
-              @php
-                  $totalPrice += $cart->product->price
-              @endphp
-              @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-    <div class="row" data-aos="fade-up" data-aos-delay="150">
-      <div class="col-12">
-        <h2 class="mb-4">Shipping Details</h2>
-    <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
-      @csrf
-      <input type="hidden" name="total_price" value="{{ $totalPrice }}">
-      <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
-        <div class="col-md-6">
-            <div class="form-group">
-              <label for="address_one">Address 1</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              id="address_one" 
-              name="address_one" 
-              value=" ">
+                </thead>
+                <tbody>
+                  @php $totalPrice = 0 @endphp
+                @foreach ($carts as $index => $cart) 
+                  <tr>
+                    <td style="width: 25%;">
+                      @if ($cart->product->galleries)
+                        <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}" 
+                      alt=""
+                      class="cart-image">
+                      @endif
+                    </td>
+                      <td style="width: 25%;">
+                        <div class="product-title items">{{ $cart->product->name }}</div>
+                      </td>
+                      <td style="width: 25%;">
+                          <form action="#">
+                              <div class="quantity">
+                                  <button type="button" data-quantity="minus" data-field="quantity{{  $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"><i class="fas fa-minus"></i></button>
+                                  <input type="number" data-formQuantity="quantity" name="quantity{{  $index }}" id="quantity{{  $index }}" value="{{  $cart->quantity }}"  data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"/>
+                                  <button type="button" data-quantity="plus" data-field="quantity{{  $index }}" data-stock="{{ $cart->product->stock }}" data-productId="{{ $cart->id }}" data-productPrice="{{ $cart->product->price }}"><i class="fas fa-plus"></i></button>
+                              </div>
+                          </form>
+                      </td>
+                      <td style="width: 25%;">
+                        <div class="product-title" id="productPrice{{ $index }}">{{ $cart->product->price }}</div>
+                        <div class="product-subtitle">IDR</div>
+                      </td>
+                      <td style="width: 25%;">
+                        <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                          <button type="submit" class="btn btn-remove-cart">
+                          X
+                        </button>
+                      </form>
+                  </td>
+                </tr>
+                @php
+                    $totalPrice += $cart->product->price
+                @endphp
+                @endforeach
+                </tbody>
+              </table>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="address_two">Address 2</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              id="address_two" 
-              name="address_two" 
-              value=" ">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="provinces_id">Province</label>
-                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
-                  <option v-for="province in provinces" :value="province.id">@{{ province.province }}</option>
-                </select>
-            <select v-else class="form-control"></select>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="regencies_id">City</label>
-                  <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
-                  <option v-for="regency in regencies" :value="regency.id">@{{ regency.city_name }}</option>
-                </select>
-            <select v-else class="form-control"></select>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="zip_code">Postal Code</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              id="zip_code" 
-              name="zip_code" 
-              value="">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="country">Country</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              id="country" 
-              name="country" 
-              value="Indonesia">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="phone_number">Mobile</label>
-              <input 
-              type="number" 
-              class="form-control" 
-              id="phone_number" 
-              name="phone_number">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Jasa Pengiriman</label>
-                <select name="couriers" id="couriers" class="form-control" v-model="courierName">
-                  <option>Pilih Kurir</option>
-                  <option value="jne">JNE</option>
-                  <option value="tiki">TIKI</option>
-                  <option value="pos">POS Indonesia</option>
-                </select>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="country">Layanan</label>
-                <select name="services" id="services" class="form-control" v-if="services" v-model="services">
-                  <option v-for="service in services" :value="service">@{{ service.service }}</option>
-                </select>
-            <select v-else class="form-control"></select>
-            </div>
-          </div>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-12">
-          <hr />
-          </div>
-          <div class="col-12">
-            <h2 class="mb-1">Payment Informations</h2>
-          </div>
-        </div>
-      <div class="row" data-aos="fade-up" data-aos-delay="200">
-       <!-- <div class="col-4 col-md-2">
-          <div class="product-title">Rp0</div>
-          <div class="product-subtitle">Country Tax</div>
-        </div>
-        <div class="col-4 col-md-3">
-          <div class="product-title">Rp0</div>
-          <div class="product-subtitle"> Product Insurance</div>
-        </div>-->
-        <div class="col-4 col-md-2">
-          <div class="product-title">Rp @{{ ongkir }}</div>
-          <div class="product-subtitle">Ship to Jakarta</div>
-        </div>
-        <div class="col-4 col-md-2">
-          <div class="product-title text-success" id="totalBiaya">Rp.{{ number_format($totalPrice ?? 0)  }}</div>
-          <div class="product-subtitle">Total</div>
-        </div>
-        <div class="col-8 col-md-3">
-          <input type="hidden" name="ongkir" v-model="ongkir">
-          <button 
-          type="submit"  
-          class="btn btn-success mt-4 px-4 btn-block"style="border-radius:20px">
-          Checkout Now
-            </button>
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+      <div class="row" data-aos="fade-up" data-aos-delay="150">
+      <form action="{{ route('checkout') }}" enctype="multipart/form-data" method="POST">
+        @csrf
+      <div class="card-body">
+        <div class="card shadow mb-4">
+          <div class="col-12">
+            <h2 class="mb-4">Shipping Details</h2>
+              <div class="mb-4" >
+                 Ubah Alamat di
+                  <a href="{{ url('dashboard/account') }}">Sini</a>
+              </div>
+                <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+                  <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
+                   <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Select address</label>
+                          <select name="selectAddress" id="selectAddress" class="form-control" v-model="addressName">
+                            <option>Pilih alamat</option>
+                              <option value="rumah">Rumah</option>
+                              <option value="kantor">Kantor</option>
+                          </select>
+                      </div>
+                  </div>-->
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="address_one">Address 1</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="address_one" 
+                        name="address_one"
+                        readonly="" 
+                        value="{{ $user->address_one }}">
+                      </div>
+                  </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="address_two">Address 2</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="address_two" 
+                    name="address_two"
+                    readonly="" 
+                    value="{{ $user->address_two }}" >
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="provinces_id">Province</label>
+                      <select name="provinces_id" disabled="" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
+                        <option v-for="province in provinces" :value="province.id">@{{ province.province }}</option>
+                      </select>
+                    <select v-else class="form-control"></select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="regencies_id">City</label>
+                        <select name="regencies_id" disabled=""  id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
+                        <option v-for="regency in regencies" :value="regency.id">@{{ regency.city_name }}</option>
+                      </select>
+                  <select v-else class="form-control"></select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="zip_code">Postal Code</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="zip_code" 
+                    name="zip_code"
+                    readonly=""  
+                    value="{{ $user->zip_code }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="country">Country</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="country" 
+                    name="country"
+                    readonly=""  
+                    value="{{ $user->country}}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="phone_number">Mobile</label>
+                    <input 
+                    type="number" 
+                    class="form-control" 
+                    id="phone_number" 
+                    name="phone_number"
+                    readonly="" 
+                    value="{{ $user->phone_number }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Couriers</label>
+                      <select name="couriers" id="couriers" class="form-control" v-model="courierName">
+                        <option>Pilih Kurir</option>
+                        <option value="jne">JNE</option>
+                        <option value="tiki">TIKI</option>
+                        <option value="pos">POS Indonesia</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" v-if="services">
+                    <label for="country">Service</label>
+                      <select name="services" id="services" class="form-control" v-model="servicePicked">
+                        <option v-for="service in services" :value="service">@{{ service.service }} est @{{ service.cost['0'].etd }} hari</option>
+                      </select>
+                  </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div class="row" data-aos="fade-up" data-aos-delay="150">
+              <div class="col-12">
+              <hr />
+              </div>
+                    <div class="col-12">
+                      <h2 class="mb-1">Payment Informations</h2>
+                    </div>
+                  </div>
+                <div class="row" data-aos="fade-up" data-aos-delay="200">
+                <!-- <div class="col-4 col-md-2">
+                    <div class="product-title">Rp0</div>
+                    <div class="product-subtitle">Country Tax</div>
+                  </div>-->
+                  <div class="col-4 col-md-2">
+                    <div class="product-title" id="berat">{{ $berat }}</div>
+                    <div class="product-subtitle">Weight</div>
+                  </div>
+                  <div class="col-4 col-md-2">
+                    <div class="product-title">Rp @{{ ongkir }}</div>
+                    <div class="product-subtitle">Shipping</div>
+                  </div>
+                  <div class="col-4 col-md-2">
+                    <div class="product-title text-success" id="totalBiaya">Rp.{{ number_format($totalPrice ?? 0)  }}</div>
+                    <div class="product-subtitle">Total</div>
+                  </div>
+                  <div class="col-8 col-md-3">
+                    <input type="hidden" name="ongkir" v-model="ongkir">
+                    <button 
+                    type="submit"  
+                    class="btn btn-success mt-4 px-4 btn-block"style="border-radius:20px">
+                    Checkout Now
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </section>
+     </div>
 @endsection
 @push('addon-script')
 <script src="/vendor/vue/vue.js"></script>
@@ -231,7 +257,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     var locations =  new Vue({
-    el:"#locations",
+    el:"#app",
     mounted() {
       AOS.init();
       this.getProvincesData();
@@ -239,18 +265,20 @@
     data: {
         provinces: null,
         regencies:null,
-        provinces_id:null,
-        regencies_id:null,
+        provinces_id: '{{ $user->provinces_id }}' || null,
+        regencies_id: '{{ $user->regencies_id }}' || null,
         courierName: null,
         services: null,
-        ongkir: 0
+        ongkir: 0,
+        servicePicked: null
     },
     methods: {
-        getProvincesData() {
+         getProvincesData() {
           var self = this;
               axios.get('{{ route('api-provinces') }}')
               .then(function(response){
               self.provinces = response.data;
+                self.getRegenciesData()
             })
           },
           getRegenciesData(){
@@ -269,6 +297,7 @@
             }
             axios.post('{{ url('api/ongkir') }}', data).then(function(res) {
               self.services = res.data
+              console.log(res.data)
             })
           }
         },
@@ -285,7 +314,7 @@
               this.getCourier()
            }
          },
-         services: function(val) {
+         servicePicked: function(val) {
            this.ongkir = val.cost[0].value
          }
        }
@@ -297,6 +326,7 @@
     let totalBiayaValue = 0;
     const jumlahItems = document.querySelectorAll(".items");
     const totalBiaya = document.getElementById('totalBiaya')
+    const berat = document.getElementById('berat')
     let productPriceShow;
     let totalHarga = 0;
 
@@ -319,6 +349,7 @@
     
     $("[data-formQuantity='quantity' ] ").change(function(e) {
       // ini bisa dipanggil
+      // waitt, saia mau nyontek
         let quantity = 0
         let stockBerubah = 0
         const angka = parseInt($(this).val())
@@ -341,7 +372,6 @@
             updateHarga = hargaProduk * (currenValueInput - quantity)
             totalHarga -= updateHarga;
         }
-        subTotal.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
         totalBiaya.innerText = 'Rp. ' + parseFloat(totalHarga, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString()
         totalBiayaValue = totalHarga
 
@@ -354,6 +384,10 @@
             data: {
                 _token: CSRFToken,
                 quantity: quantity
+            },
+            success: function(ea){
+              ea = JSON.parse(ea)
+              berat.innerHTML = ea.berat;
             },
         });
     });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 use App\Http\Requests\Admin\UserRequest;
@@ -116,8 +117,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|email:rfc,dns|unique:users,email,' . $id . ',id',
+            'roles'=>'nullable|string|in:ADMIN,USER'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('user.edit', $id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $data = $request->all();
         
         $item = User::findOrFail($id);

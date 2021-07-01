@@ -46,25 +46,26 @@ class CheckoutController extends Controller
         $transaction = Transaction::insertGetId([
             'users_id' => Auth::user()->id,
             'inscurance_price' => 0, 
-            'shipping_price' => 0,
+            'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
             'code' => $code,
             'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
+            'updated_at' => \Carbon\Carbon::now(),
+            'resi' => '',
+            'couriers' => $request->couriers
         ]);  
         
         //transaction detail
         foreach ($carts as $cart) {
-            $trx = 'TRX-' . mt_rand(00000,99999);
+            $code = 'STORE-' . mt_rand(00000,99999);
   
         TransactionDetail::create([
             'transactions_id' => $transaction,
             'products_id' => $cart->product->id, 
             'price' => $cart->product->price,
-            'shipping_status' => 'PENDING',
-            'resi' => '',
-            'code' => $trx,
+            'code' => $code,
+            'quantity' => $cart->quantity,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
             ]); 

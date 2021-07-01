@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Khairina Store - Jual Fashion Wanita    
+    Khairina Store - Jual Pakaian Wanita    
 @endsection
 
 @section('content')
@@ -48,9 +48,8 @@
         </div>
     </section>
 
-<section class="store-trend-categories">
+<!--<section class="store-trend-categories">
       <div class="container my-4">
-        
         <div class="row">
           @php
             $incrementCategory = 0
@@ -82,13 +81,13 @@
       @endforelse
     </div>
   </div>
-</section>
+</section>-->
 
 <section class="store-new-product">
     <div class="container">
         <div class="row">
         <div class="col-12" data-aos="fade-up">
-            <h3 class="text-center">New Arrivals for you</h3>
+            <h3 class="text-center" style="margin-top: 35px; margin-bottom:35px">Top Searches This Week</h3>
         </div>
             </div>
         <div class="row">
@@ -120,18 +119,18 @@
                         <div class="products-price">
                             Rp.{{ $product->price }}
                         </div>
-                    </a>
-                </div>
-            @empty
-                <div class="col-12 text-center py-5"
-                    data-aos="fade-us"
-                    data-aos-delay="100">
-                    No Product Found
-                </div>
-            @endforelse
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-12 text-center py-5"
+                        data-aos="fade-us"
+                        data-aos-delay="100">
+                        No Product Found
+                    </div>
+                @endforelse
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 <section class="testimonial">
     <div class="container">
@@ -220,8 +219,8 @@
         </div>
         
     <!-- /clients-sec -->
-    <div class="testimonials p-lg-5 p-3 mt-4">
-    <div class="row last-section">
+   <div class="testimonials p-lg-5 p-3 mt-4">
+    <div class="row last-section" >
         <div class="col-lg-3 footer-top-w3layouts-grid-sec">
         <div class="mail-grid-icon text-center">
             <i class="fas fa-gift"></i>
@@ -257,10 +256,12 @@
             <h3>Easy Delivery</h3>
             <p>JNE | TIKI | </br>
                 Pos Indonesia</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
-    </div>
-</section>
+         <div class="p-lg-5 p-2 mt-2">
+         </div>
+    </section>
 </div>
 @endsection
