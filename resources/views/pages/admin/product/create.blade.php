@@ -67,12 +67,6 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Warna Produk</label>
-                                                        <input type="text" data-role="tagsinput" name="colors" class="form-control" data-placeholder="Add a color... (then press comma)">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
                                                 <label>Deskripsi Produk</label>
                                                 <textarea name="description" id="editor" ></textarea>
                                             </div>

@@ -53,7 +53,7 @@
             </div>
             <div class="store-details-container col-lg-7" data-aos="fade-up">
               <section class="store-heading">
-                  <h1>{{ $product->name }}</h1>
+                  <h1>@{{ productTitle }}</h1>
                   <div class="price">Rp.{{ number_format($product->price) }}</div>
                   <span class="quantity-title">Quantity : </span>
                       <div class="product-quantity d-flex flex-wrap align-items-center">
@@ -67,18 +67,20 @@
                       </div>
                   <div class="flex items-center">
                     <span class="items-center">Color : </span>
-                    @php
-                      $colors = explode(',', $product->colors);
-                    @endphp
-                    @foreach ($colors as $color)
-                      <button type="button" class="btn btn-outline-dark">{{ $color }}</button>
-                    @endforeach
+                      <button type="button"
+                        v-for="(photo, index) in photos"
+                        @click="changeColor(index)"
+                        :key="photo.id"
+                        class="btn btn-outline-dark mx-2"
+                        :class="{ 'btn-secondary text-white': index === selectedIdColor}"
+                        >
+                        @{{ photo.color }}
+                      </button>
                   </div> 
                   <section class="store-description">
                     <div class="container">
                       <div class="row">
-                        <div class="store-description">
-                          {!! $product->description !!}
+                        <div class="store-description" v-html="description">
                       </div>
                     </div>
                    </div>
@@ -87,6 +89,7 @@
                       <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="quantity" name="quantity" value="1">
+                        <input type="hidden" name="id_product_variant">
                         <button
                           type="submit" 
                           class="btn btn-success px-4 text-white mb-3" style="border-radius:20px">
@@ -128,13 +131,27 @@
             {
               id: {{ $gallery->id }},
               url:"{{ Storage::url($gallery->photos) }}",
+              color: "{{ $gallery->color }}",
+              description: "{{ $gallery->description }}"
             },
           @endforeach
         ],
+        description: "{!! $product->description !!}",
+        selectedIdColor: null,
+        title: "{{ $product->name }}",
+        productTitle: "{{ $product->name }}" 
     },
     methods: {
         changeActive(id) {
-        this.activePhoto = id;
+          this.activePhoto = id;
+          this.description = this.photos[id].description
+          this.productTitle = this.title + " - " + this.photos[id].color
+        },
+        
+        changeColor(id) {
+          this.description = this.photos[id].description
+          this.selectedIdColor = id
+          this.productTitle = this.title + " - " + this.photos[id].color
         }
     }
     });

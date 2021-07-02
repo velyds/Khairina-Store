@@ -26,8 +26,10 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Produk</th>
                                             <th>Foto</th>
+                                            <th>Produk</th>
+                                            <th>Warna</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -56,8 +58,10 @@
             
             columns: [
                 {data:'id', name:'id'},
-                {data:'product.name', name:'product.name'},
                 {data:'photos', name:'photos'},
+                {data:'product.name', name:'product.name'},
+                {data:'color', name:'color'},
+                {data:'description', name:'description'},
                 {
                     data:'action',
                     name:'action',
