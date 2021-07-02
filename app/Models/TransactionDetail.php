@@ -18,6 +18,7 @@ class TransactionDetail extends Model
         'price',
         'code',
         'quantity',
+        'product_variant_id'
     ];
 
     /**
@@ -35,5 +36,9 @@ class TransactionDetail extends Model
 
     public function transaction(){
         return $this->hasOne(Transaction::class, 'id', 'transactions_id');
+    }
+
+    public function variant() {
+        return $this->hasOne(ProductGallery::class, 'id', 'product_variant_id');
     }
 }

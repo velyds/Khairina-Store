@@ -72,7 +72,7 @@
                         @click="changeColor(index)"
                         :key="photo.id"
                         class="btn btn-outline-dark mx-2"
-                        :class="{ 'btn-secondary text-white': index === selectedIdColor}"
+                        :class="{ 'btn-secondary text-white': photo.id === selectedIdColor}"
                         >
                         @{{ photo.color }}
                       </button>
@@ -89,10 +89,22 @@
                       <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="quantity" name="quantity" value="1">
-                        <input type="hidden" name="id_product_variant">
+                        <input type="hidden" name="product_variant_id" value="1" v-model="selectedIdColor">
                         <button
                           type="submit" 
-                          class="btn btn-success px-4 text-white mb-3" style="border-radius:20px">
+                          class="btn btn-success px-4 text-white mb-3"
+                          style="border-radius:20px"
+                          v-if="selectedIdColor !== null"
+                          >
+                          Add to cart
+                      </button> 
+                        <button
+                          type="button" 
+                          class="btn btn-secondary px-4 text-white mb-3"
+                          style="border-radius:20px"
+                          v-else
+                          disabled
+                          >
                           Add to cart
                       </button> 
                       </form>
@@ -150,7 +162,7 @@
         
         changeColor(id) {
           this.description = this.photos[id].description
-          this.selectedIdColor = id
+          this.selectedIdColor = this.photos[id].id
           this.productTitle = this.title + " - " + this.photos[id].color
         }
     }
