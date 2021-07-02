@@ -148,7 +148,7 @@
             },
           @endforeach
         ],
-        description: "{!! $product->description !!}",
+        description: `{!! $product->description !!}`,
         selectedIdColor: null,
         title: "{{ $product->name }}",
         productTitle: "{{ $product->name }}" 
@@ -156,14 +156,14 @@
     methods: {
         changeActive(id) {
           this.activePhoto = id;
-          this.description = this.photos[id].description
           this.productTitle = this.title + " - " + this.photos[id].color
         },
         
         changeColor(id) {
-          this.description = this.photos[id].description
           this.selectedIdColor = this.photos[id].id
           this.productTitle = this.title + " - " + this.photos[id].color
+
+          this.changeActive(id)
         }
     }
     });
