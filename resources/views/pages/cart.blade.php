@@ -48,13 +48,13 @@
                   <tr>
                     <td style="width: 25%;">
                       @if ($cart->product->galleries)
-                        <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}" 
+                        <img src="{{ Storage::url($cart->variant->photos) }}" 
                       alt=""
                       class="cart-image">
                       @endif
                     </td>
                       <td style="width: 25%;">
-                        <div class="product-title items">{{ $cart->product->name }}</div>
+                        <div class="product-title items">{{ $cart->product->name }} - {{ $cart->variant->color }}</div>
                       </td>
                       <td style="width: 25%;">
                           <form action="#">

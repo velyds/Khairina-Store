@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     protected $fillable = [
-        'products_id', 'users_id', 'quantity'
+        'products_id', 'users_id', 'quantity', 'product_variant_id'
     ];
 
     protected $hidden = [
@@ -20,5 +20,9 @@ class Cart extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function variant() {
+        return $this->hasOne(ProductGallery::class, 'id', 'product_variant_id');
     }
 }

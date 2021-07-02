@@ -30,6 +30,7 @@ class DetailController extends Controller
             'products_id' => $id,
             'users_id' => Auth::user()->id,
             'quantity' => $request->input('quantity'), 
+            'product_variant_id' => $request->input('product_variant_id')
         ];
 
         Cart::create($data);

@@ -60,15 +60,16 @@ class CheckoutController extends Controller
         foreach ($carts as $cart) {
             $code = 'STORE-' . mt_rand(00000,99999);
   
-        TransactionDetail::create([
-            'transactions_id' => $transaction,
-            'products_id' => $cart->product->id, 
-            'price' => $cart->product->price,
-            'code' => $code,
-            'quantity' => $cart->quantity,
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now(),
-            ]); 
+            TransactionDetail::create([
+                'transactions_id' => $transaction,
+                'products_id' => $cart->product->id, 
+                'price' => $cart->product->price,
+                'code' => $code,
+                'quantity' => $cart->quantity,
+                'product_variant_id' => $cart->product_variant_id,
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now(),
+                ]); 
         }
 
         // Delete Cart Data
