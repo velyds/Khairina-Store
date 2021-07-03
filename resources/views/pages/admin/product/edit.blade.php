@@ -37,10 +37,9 @@
                                                 <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12"> 
                                             <div class="form-group">
                                                 <label>Kategori Produk</label>
-                                                <option value="{{ $item->categories }}" selected>{{ $item->category->name }}</option>
                                                 <select name="categories_id" class="form-control">
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>

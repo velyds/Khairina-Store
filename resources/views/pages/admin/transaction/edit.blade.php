@@ -37,6 +37,7 @@
                                                     <select name="transaction_status" class="form-control">
                                                         <option value="{{ $item->transaction_status }}" selected>{{ $item->transaction_status }}</option>
                                                         <option value="PENDING">PENDING</option>
+                                                        <option value="PROCESS">PROCESS</option>
                                                         <option value="SHIPPING">SHIPPING</option>
                                                         <option value="SUCCESS">SUCCESS</option>
                                                     </select>

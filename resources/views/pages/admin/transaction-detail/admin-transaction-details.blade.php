@@ -139,6 +139,7 @@
                                                 <div class="product-title">Shipping Status</div>
                                                 <select name="transaction_status" class="form-control" v-model="status">
                                                     <option value="PENDING" {{ $transactions->transaction_status == 'PENDING' ? 'selected' : '' }}>PENDING</option>
+                                                    <option value="PROCESS" {{ $transactions->transaction_status == 'PROCESS' ? 'selected' : '' }}>PROCESS</option>
                                                     <option value="SHIPPING" {{ $transactions->transaction_status == 'SHIPPING' ? 'selected' : '' }}>SHIPPING</option>
                                                     <option value="SUCCESS" {{ $transactions->transaction_status == 'SUCCESS' ? 'selected' : '' }}>SUCCESS</option>
                                                 </select>

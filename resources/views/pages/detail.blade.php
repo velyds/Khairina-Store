@@ -92,7 +92,7 @@
                         <input type="hidden" name="product_variant_id" value="1" v-model="selectedIdColor">
                         <button
                           type="submit" 
-                          class="btn btn-success px-4 text-white mb-3"
+                          class="btn btn-primary px-4 text-white mb-3"
                           style="border-radius:20px"
                           v-if="selectedIdColor !== null"
                           >
