@@ -96,7 +96,7 @@
                           style="border-radius:20px"
                           v-if="selectedIdColor !== null"
                           >
-                          Add to cart
+                          Add to cart 
                       </button> 
                         <button
                           type="button" 

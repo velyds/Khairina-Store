@@ -165,7 +165,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label>Jasa Pengiriman</label>
+              <label>Delivery Service</label>
                 <select name="couriers" id="couriers" class="form-control" v-model="courierName">
                   <option>Pilih Kurir</option>
                   <option value="jne">JNE</option>
@@ -176,7 +176,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="country">Layanan</label>
+              <label for="country">Service</label>
                 <select name="services" id="services" class="form-control" v-if="services" v-model="services">
                   <option v-for="service in services" :value="service">@{{ service.service }}</option>
                 </select>
