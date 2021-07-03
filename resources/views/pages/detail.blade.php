@@ -55,6 +55,11 @@
               <section class="store-heading">
                   <h1>@{{ productTitle }}</h1>
                   <div class="price">Rp.{{ number_format($product->price) }}</div>
+
+                  <div class="flex items-center">
+                    <span class="items-center">@{{ stock }}</span>
+                  </div>
+
                   <span class="quantity-title">Quantity : </span>
                       <div class="product-quantity d-flex flex-wrap align-items-center">
                           <form action="#">
@@ -151,7 +156,8 @@
         description: `{!! $product->description !!}`,
         selectedIdColor: null,
         title: "{{ $product->name }}",
-        productTitle: "{{ $product->name }}" 
+        productTitle: "{{ $product->name }}",
+        stock: "Stock: {{ $product->stock }}"
     },
     methods: {
         changeActive(id) {
