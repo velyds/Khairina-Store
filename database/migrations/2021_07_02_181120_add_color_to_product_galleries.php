@@ -15,7 +15,7 @@ class AddColorToProductGalleries extends Migration
     {
         Schema::table('product_galleries', function (Blueprint $table) {
             $table->string('color');
-            $table->string('description');
+            // $table->string('description');
         });
     }
 
@@ -28,7 +28,7 @@ class AddColorToProductGalleries extends Migration
     {
         Schema::table('product_galleries', function (Blueprint $table) {
             $table->dropColumn('color');
-            $table->dropColumn('description');
+            // $table->dropColumn('description');
         });
     }
 }

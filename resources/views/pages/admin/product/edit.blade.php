@@ -106,7 +106,6 @@ Dashboard Product
                                             <th>ID</th>
                                             <th>Foto</th>
                                             <th>Warna</th>
-                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -147,10 +146,6 @@ Dashboard Product
             {
                 data: 'color',
                 name: 'color'
-            },
-            {
-                data: 'description',
-                name: 'description'
             },
             {
                 data: 'action',
