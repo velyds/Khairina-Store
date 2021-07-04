@@ -46,11 +46,6 @@ Dashboard Product
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Keterangan</label>
-                                            <textarea name="description" cols="30" rows="10" class="form-control"></textarea>
-                                        </div>
-
-                                        <div class="form-group">
                                             <label>Foto Produk</label>
                                             <input type="file" name="photos" class="form-control" required>
                                         </div>
