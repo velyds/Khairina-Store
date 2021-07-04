@@ -89,7 +89,7 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect()->route('productgallery.index');
+        return redirect()->route('product.index');
     }
 
     /**
