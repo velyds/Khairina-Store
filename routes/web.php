@@ -73,6 +73,11 @@ Route::prefix('admin')
         Route::resource('transaction','\App\Http\Controllers\Admin\TransactionController');
         Route::resource('report','\App\Http\Controllers\Admin\ReportController');
         Route::post('report/filter', [App\Http\Controllers\Admin\ReportController::class, 'filter'])->name('filter');
+
+        // Product Variant Routes
+        Route::get('product/{id}/createVariant', [App\Http\Controllers\Admin\ProductController::class, 'createVariant'])->name('createVariant');
+        Route::post('product/storeVariant', [App\Http\Controllers\Admin\ProductController::class, 'storeVariant'])->name('storeVariant');
+        Route::delete('product/{id}/storeVariant', [App\Http\Controllers\Admin\ProductController::class, 'destroyVariant'])->name('destroyVariant');
     });
 
 Auth::routes();
