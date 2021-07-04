@@ -45,7 +45,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $TD->product->name . " - " . $TD->variant->color }}</td>
-                                        <td>{{ $TD->product->price }}</td>
+                                        <td>@rupiah($TD->product->price)</td>
                                         <td>{{ $TD->product->weight }}</td>
                                         <td>{{ $TD->quantity }}</td>
                                     </tr>
@@ -74,7 +74,7 @@
                                             </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Shipping cost</div>
-                                                <div class="product-subtitle">{{ $transactions->shipping_price }}</div>
+                                                <div class="product-subtitle">@rupiah($transactions->shipping_price)</div>
                                             </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Total Weight</div>
@@ -82,7 +82,7 @@
                                             </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Total Amount</div>
-                                                <div class="product-subtitle">Rp.{{ number_format($transactions->total_price) }}</div>
+                                                <div class="product-subtitle">@rupiah($transactions->total_price)</div>
                                             </div>
                                             </div>
                                         </div>
