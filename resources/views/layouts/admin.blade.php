@@ -65,12 +65,6 @@
               Product 
             </a>
             <a
-               href="{{ route('productgallery.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/productgallery*')) ? 'active' : '' }}"
-            >
-              Galleries 
-            </a>
-            <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
             >
