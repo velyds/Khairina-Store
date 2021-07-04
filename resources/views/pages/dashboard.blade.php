@@ -19,25 +19,29 @@
                 <h5 class="mb-3">Recent Transactions</h5>
                @foreach ($transaction_data as $transaction)
                     <a 
-                    href="{{ route('dashboard-transaction-details', $transaction->transaction->id) }}" 
+                    href="{{ route('dashboard-transaction-details', $transaction->id) }}" 
                     class="card card-list d-block"
                     >
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-1">
                                 <img 
-                                    src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" 
+                                    src="{{ Storage::url($transaction->detail->first()->variant->photos ?? '') }}" 
                                     class="w-75"
                                 />
                             </div>
                         <div class="col-md-4">
-                            {{ $transaction->product->name ?? '' }}
+                            {{ $transaction->detail->first()->product->name . " - " . $transaction->detail->first()->variant->color }}
+                            
+                            @if (count($transaction->detail) > 1)
+                                <small class="ml-2">(+ {{ count($transaction->detail) - 1 }} Produk lainnya)</small>
+                            @endif
                         </div>
                         <div class="col-md-3">
-                             {{ $transaction->transaction->user->name ?? '' }}
+                             {{ $transaction->user->name }}
                         </div>
                         <div class="col-md-3">
-                             {{ $transaction->created_at ?? '' }}
+                             {{ $transaction->created_at }}
                         </div>
                             <div class="col-md-1 d-none d-md-block">
                                 <img 

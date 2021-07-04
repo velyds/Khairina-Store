@@ -11,22 +11,19 @@ class DashboardTransactionController extends Controller
 {
     public function index()
     {
-         $buyTransactions = TransactionDetail::with(['transaction.user','product.galleries'])
-                            ->whereHas('transaction', function($transaction){
-                                $transaction->where('users_id', Auth::user()->id);
-                            })->orderBy('id','desc')->get();
+        $buyTransactions = Transaction::with('detail')->where('users_id', Auth::user()->id)
+                                        ->orderBy('id','desc')->get();
         
         return view('pages.dashboard-transactions',[
             'buyTransactions' => $buyTransactions
         ]);
     }
+    
     public function details(Request $request, $id)
     {
-         $item = Transaction::with(['user'])->findOrFail($id);
-         $transactionDetail = TransactionDetail::with(['product'])->where(['transactions_id' => $id])->get();
+        $item = Transaction::with(['user'])->findOrFail($id);
+        $transactionDetail = TransactionDetail::with(['product'])->where(['transactions_id' => $id])->get();
 
-         
-         
         $berat = 0;
         foreach ($transactionDetail as $TD){
             $berat += $TD->product->weight * $TD->quantity;

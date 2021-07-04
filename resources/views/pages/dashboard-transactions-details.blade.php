@@ -37,14 +37,14 @@
                                         <td>{{ ++$index }}</td>
                                         <td>
                                             @if ($TD->product->galleries)
-                                            <img src="{{ Storage::url($TD->product->galleries->first()->photos) }}" 
+                                            <img src="{{ Storage::url($TD->variant->photos) }}" 
                                             alt=""
                                             height="100"
                                             width="100"
                                             >
                                             @endif
                                         </td>
-                                        <td>{{ $TD->product->name }}</td>
+                                        <td>{{ $TD->product->name . " - " . $TD->variant->color }}</td>
                                         <td>{{ $TD->product->price }}</td>
                                         <td>{{ $TD->product->weight }}</td>
                                         <td>{{ $TD->quantity }}</td>
