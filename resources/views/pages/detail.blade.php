@@ -56,7 +56,7 @@
                   <h1>@{{ productTitle }}</h1>
                   <div class="price">Rp.{{ number_format($product->price) }}</div>
 
-                  <div class="flex items-center">
+                  <div class="items-center">
                     <span class="items-center">@{{ stock }}</span>
                   </div>
 
@@ -70,7 +70,7 @@
                                 </div>
                           </form>
                       </div>
-                  <div class="flex items-center">
+                  <div class="items-center">
                     <span class="items-center">Color : </span>
                       <button type="button"
                         v-for="(photo, index) in photos"
@@ -116,7 +116,7 @@
                     @else
                     <a 
                       href="{{ route('login') }}"
-                      class="btn btn-success px-4 text-white mb-3" style="border-radius:20px">
+                      class="btn btn-primary px-4 text-white mb-3" style="border-radius:20px">
                       Sign in to add
                     </a>
                     @endauth  
@@ -126,8 +126,6 @@
           </div>
         </div>
       </section>
-
-      
     </div>
   </div>
 
@@ -157,7 +155,7 @@
         selectedIdColor: null,
         title: "{{ $product->name }}",
         productTitle: "{{ $product->name }}",
-        stock: "Stock: {{ $product->stock }}"
+        stock: "Stock : {{ $product->stock }}"
     },
     methods: {
         changeActive(id) {

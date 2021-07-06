@@ -87,7 +87,7 @@
     <div class="container">
         <div class="row">
         <div class="col-12" data-aos="fade-up">
-            <h3 class="text-center" style="margin-top: 35px; margin-bottom:35px">Top Searches This Week</h3>
+            <h4 class="text-center" style="margin-top: 35px; margin-bottom:35px">Top Searches This Week</h4>
         </div>
             </div>
         <div class="row">
@@ -153,12 +153,10 @@
                         Anamaria
                         <span>Customer</span>
                     </h3>
-                    <label>United States</label>
+                    <label>Tangerang</label>
                     <p>
-                        Maecenas interdum, metus vitae tincidunt porttitor,
-                        magna quam egestas sem, ac scelerisque nisl nibh vel
-                        lacus. Proin eget gravida odio. Donec ullamcorper est eu
-                        accumsan cursus.
+                        Bagus banget blousenya🤩🤩 Bahannya nyaman banget di pake
+                        Ukurannya pas, Recommended
                     </p>
                     </div>
                 </div>
@@ -168,27 +166,23 @@
                         Esmeralda
                         <span>Customer</span>
                     </h3>
-                    <label>United States</label>
+                    <label>Padang</label>
                     <p>
-                        Maecenas interdum, metus vitae tincidunt porttitor,
-                        magna quam egestas sem, ac scelerisque nisl nibh vel
-                        lacus. Proin eget gravida odio. Donec ullamcorper est eu
-                        accumsan cursus.
+                        Barang sudah sampai sesuai pesanan, packing aman 
+                        pengiriman cepat, produk saya suka terimakasih 😁
                     </p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="testimonials_grid text-center">
                     <h3>
-                        Gretchen
+                        Afifah
                         <span>Customer</span>
                     </h3>
-                    <label>United States</label>
+                    <label>Tangerang</label>
                     <p>
-                        Maecenas interdum, metus vitae tincidunt porttitor,
-                        magna quam egestas sem, ac scelerisque nisl nibh vel
-                        lacus. Proin eget gravida odio. Donec ullamcorper est eu
-                        accumsan cursus.
+                        Bahannya adem , Recommended bgt pokoknya saya
+                        suka Pengiriman juga cepat
                     </p>
                     </div>
                 </div>

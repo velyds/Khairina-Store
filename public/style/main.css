@@ -11012,7 +11012,7 @@ footer p {
 .testimonials .testimonials_grid h3 span {
   font-weight: 100;
   font-size: 0.8em;
-  color: #f7f7f7;
+  color: #a8a8a8;
 }
 
 .testimonials .testimonials_grid p {
@@ -11030,7 +11030,7 @@ footer p {
 
 .testimonials .testimonials_grid {
   margin: 0 auto;
-  width: 60%;
+  width: 81%;
 }
 
 .testimonials a.carousel-control-next.test,
@@ -11144,6 +11144,12 @@ footer p {
   font-size: 18px;
   line-height: 27px;
   color: #ff7158;
+  margin-bottom: 10px;
+}
+
+.page-details .store-heading .items-center {
+  font-weight: normal;
+  font-size: medium;
   margin-bottom: 10px;
 }
 
@@ -11403,6 +11409,7 @@ footer p {
   border-radius: 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  margin-bottom: 50px;
 }
 
 .page-auth .section-store-auth .btn-signup:hover {

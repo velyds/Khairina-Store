@@ -19,8 +19,9 @@
         .btn-signup {
             @include button-variant(#f3f3f3, transparent);
             color: rgb(71, 71, 71);
-            border-radius: 20px;
+            border-radius: 20px;  
             box-sizing: border-box;
+            margin-bottom: 50px; 
         }
 
         .btn-success {
