@@ -16,13 +16,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item {{ (request()->is('home*')) ? 'active' : '' }}">
               <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item {{ (request()->is('categories')) ? 'active' : '' }}">
               <a href="{{ route('categories') }}" class="nav-link">Categories</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item {{ (request()->is('contact')) ? 'active' : '' }}">
               <a href="{{ route('contact') }}" class="nav-link">Contact</a>
             </li>
           </ul>
