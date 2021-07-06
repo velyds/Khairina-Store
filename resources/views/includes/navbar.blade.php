@@ -31,11 +31,7 @@
     </button>
      <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-<<<<<<< HEAD
-            <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
-=======
             <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}">
->>>>>>> 6781cb53875ecabcc781be55d0fff68c915d9390
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item {{ (request()->is('categories')) ? 'active' : '' }}">
