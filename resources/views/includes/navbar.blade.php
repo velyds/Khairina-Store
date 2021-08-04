@@ -41,12 +41,15 @@
                 <a href="{{ route('contact') }}" class="nav-link">Contact</a>
             </li>
         @guest
+            <li class="nav-item {{ (request()->is('login')) ? 'active' : '' }}">
+                <a href="{{ route('login') }}" class="nav-link">Sign In</a>
+            </li>
             <li class="nav-item">
                 <a
-                href="{{ route('login') }}"
+                href="{{ route('register') }}"
                 class="btn btn-success nav-link px-4 text-white"
                 style="background: #3eb3f7;border-radius: 20px;border: 2px solid #3eb3f7;"
-                >Sign In</a
+                >Sign Up</a
                 >
             </li>
         @endguest
