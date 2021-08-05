@@ -47,6 +47,7 @@ class CheckoutController extends Controller
             'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
             'transaction_status' => 'PENDING',
+            'code' => $code,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
             'resi' => '',
