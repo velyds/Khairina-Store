@@ -22,7 +22,13 @@ Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])
 Route::get('/details/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
 Route::post('/details/{id}', [App\Http\Controllers\DetailController::class, 'add'])->name('detail-add');
 
-Route::post('/checkout/callback', [App\Http\Controllers\CheckoutController::class, 'callback'])->name('midtrans-callback');
+// Route::post('/checkout/callback', [App\Http\Controllers\CheckoutController::class, 'callback'])->name('midtrans-callback');
+
+Route::post('/payment/handling', 'CheckoutController@callback');
+Route::get('/payment/cancel', 'CheckoutController@midtranscancel');
+Route::get('/payment/finish', 'CheckoutController@midtransfinish');
+Route::get('/payment/unfinish', 'CheckoutController@midtransunfinish');
+Route::get('/payment/error', 'CheckoutController@midtranserror');
 
 Route::get('/success', [App\Http\Controllers\CartController::class, 'success'])->name('success');
 Route::get('/register/success', [App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');

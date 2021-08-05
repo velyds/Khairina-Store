@@ -21,6 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('shipping_price');
             $table->integer('total_price');
             $table->string('transaction_status'); //unpaid/pending/success/failed
+            $table->string('status_pay')->length(8)->nullable(); 
             $table->string('resi');
             
 
