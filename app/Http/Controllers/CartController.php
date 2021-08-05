@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -82,8 +84,9 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-     public function success()
-    {
+    public function success(Request $request)
+    {  
+        $this->callback($request);
         return view('pages.success');
     }
     
@@ -100,5 +103,90 @@ class CartController extends Controller
         }
 
         return false;
+    }
+
+    public function callback(Request $request)
+    {
+        $transaction = $request->transaction_status;
+        $fraud = $request->fraud_status;
+
+        $transaction_id = TransactionDetail::where('code',$request->order_id)->first()->transactions_id;
+
+        // Storage::put('file.txt', $transaction);
+        if ($transaction == 'capture') {
+            if ($fraud == 'challenge') {
+              // TODO Set payment status in merchant's database to 'challenge'
+              
+              Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
+            return;
+              
+            }else if ($fraud == 'accept') {
+              // TODO Set payment status in merchant's database to 'success'
+              
+              Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCCESS'
+            ]);
+            return;
+              
+            }
+        }else if ($transaction == 'cancel') {
+            if ($fraud == 'challenge') {
+              // TODO Set payment status in merchant's database to 'failure'
+              Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
+            return;
+              
+            }else if ($fraud == 'accept') {
+              // TODO Set payment status in merchant's database to 'failure'
+
+              Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'CANCEL',
+                'transaction_status' => 'PENDING'
+            ]);
+            return;
+            }
+        }else if ($transaction == 'deny') {
+            // TODO Set payment status in merchant's database to 'failure' 
+
+            Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'FAILED',
+                'transaction_status' => 'PENDING'
+            ]);
+            return;
+              
+        }else if($transaction == 'pending') {
+                Transaction::where('id', $transaction_id)->update([
+                    'status_pay' => 'PENDING',
+                    'transaction_status' => 'PENDING'
+                ]);
+            return;
+        }else if($transaction == 'expire') {
+            
+            Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'EXPIRED',
+                'transaction_status' => 'PENDING'
+            ]);
+            return;
+        }else if($transaction == 'accept') {
+            
+            Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCESS'
+            ]);
+            return;
+        }else if($transaction == 'settlement') {
+            Transaction::where('id', $transaction_id)->update([
+                'status_pay' => 'SUCCESS',
+                'transaction_status' => 'PROCESS'
+            ]);
+            return;
+        }
+        echo json_encode('berhasil');
     }
 }
