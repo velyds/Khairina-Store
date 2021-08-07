@@ -17,7 +17,6 @@ class CreateTransactionsTable extends Migration
             $table->id();
 
             $table->integer('users_id');
-            $table->integer('inscurance_price');
             $table->integer('shipping_price');
             $table->integer('total_price');
             $table->string('transaction_status'); //unpaid/pending/success/failed
