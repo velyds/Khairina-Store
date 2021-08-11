@@ -24,13 +24,7 @@ Route::post('/details/{id}', [App\Http\Controllers\DetailController::class, 'add
 
 // Route::post('/checkout/callback', [App\Http\Controllers\CheckoutController::class, 'callback'])->name('midtrans-callback');
 
-Route::post('/payment/handling', [App\Http\Controllers\CheckoutController::class, 'callback']);
-Route::get('/payment/cancel', [App\Http\Controllers\CheckoutController::class, 'midtranscancel']);
-Route::get('/payment/finish', [App\Http\Controllers\CheckoutController::class, 'midtransfinish']);
-Route::get('/payment/unfinish', [App\Http\Controllers\CheckoutController::class, 'midtransunfinish']);
-Route::get('/payment/error', [App\Http\Controllers\CheckoutController::class, 'midtranserror']);
-
-Route::get('/success', [App\Http\Controllers\CartController::class, 'success'])->name('success');
+Route::get('/payment/finish', [App\Http\Controllers\CartController::class, 'success'])->name('success');
 Route::get('/register/success', [App\Http\Controllers\Auth\RegisterController::class, 'success'])->name('register-success');
 
 //Route::get('/failed', [App\Http\Controllers\CartController::class, 'failed'])->name('failed');

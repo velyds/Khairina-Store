@@ -55,7 +55,6 @@ class CheckoutController extends Controller
         
         //transaction detail
         foreach ($carts as $cart) {
-            $code = 'STORE-' . mt_rand(00000,99999);
   
             TransactionDetail::create([
                 'transactions_id' => $transaction,

@@ -86,7 +86,9 @@ class CartController extends Controller
     public function success(Request $request)
     {  
         $this->callback($request);
-        return view('pages.success');
+        $code = $request->order_id;
+        $db = Transaction::where('code',$code)->first();
+        return view('pages.midtrans.status', compact('db'));
     }
     
      public function failed()
