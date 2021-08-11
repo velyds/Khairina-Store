@@ -42,11 +42,10 @@ class CheckoutController extends Controller
 
         //transaction create
         $transaction = Transaction::insertGetId([
-            'users_id' => Auth::user()->id,
-            'inscurance_price' => 0, 
+            'users_id' => Auth::user()->id, 
             'shipping_price' => $request->ongkir,
             'total_price' => $totalPrice,
-            'transaction_status' => 'PENDING',
+            'transaction_status' => 'PROCESS',
             'code' => $code,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
@@ -109,6 +108,5 @@ class CheckoutController extends Controller
             echo $e->getMessage();
         }
     }
-
 }
 
