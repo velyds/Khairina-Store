@@ -48,8 +48,6 @@
                             class="form-control" 
                             id="email" 
                             name="email"
-                            onkeydown="preventNumberInput(event)" 
-                            onkeyup="preventNumberInput(event)" 
                             autofocus 
                             value="{{ $user->email }}">
                         </div>

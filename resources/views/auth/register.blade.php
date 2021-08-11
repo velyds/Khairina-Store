@@ -46,8 +46,6 @@
                                     value="{{ old('email') }}" 
                                     required 
                                     autocomplete="email"
-                                    onkeydown="preventNumberInput(event)" 
-                                    onkeyup="preventNumberInput(event)" 
                                     autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
