@@ -85,8 +85,9 @@ class CartController extends Controller
 
     public function success(Request $request)
     {  
-        $this->callback($request);
         $code = $request->order_id;
+        $dataMidtrans = $this->getStatusMidtrans($code);
+        $this->callback($dataMidtrans);
         $db = Transaction::where('code',$code)->first();
         return view('pages.midtrans.status', compact('db'));
     }
@@ -94,6 +95,33 @@ class CartController extends Controller
      public function failed()
     {
         return view('pages.failed');
+    }
+
+    public function getStatusMidtrans($orderId) {
+        $auth = "Basic U0ItTWlkLXNlcnZlci0zbGpVdjZWSzlPZTVtQUg5N0ZKSkhsTTM=";
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.sandbox.midtrans.com/v2/" . $orderId . "/status",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_POSTFIELDS =>"\n\n",
+        CURLOPT_HTTPHEADER => array(
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Authorization: " . $auth,
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return json_decode($response);
     }
 
     public function cekAlamat() {
@@ -106,7 +134,7 @@ class CartController extends Controller
         return false;
     }
 
-    public function callback(Request $request)
+    public function callback($request)
     {
         $transaction = $request->transaction_status;
         $fraud = $request->fraud_status;
@@ -120,7 +148,7 @@ class CartController extends Controller
                 'status_pay' => 'FAILED',
                 'transaction_status' => 'PENDING'
             ]);
-            return;
+            
               
             }else if ($fraud == 'accept') {
               // TODO Set payment status in merchant's database to 'success'
@@ -129,7 +157,7 @@ class CartController extends Controller
                 'status_pay' => 'SUCCESS',
                 'transaction_status' => 'PROCCESS'
             ]);
-            return;
+            
               
             }
         }else if ($transaction == 'cancel') {
@@ -139,7 +167,7 @@ class CartController extends Controller
                 'status_pay' => 'FAILED',
                 'transaction_status' => 'PENDING'
             ]);
-            return;
+            
               
             }else if ($fraud == 'accept') {
               // TODO Set payment status in merchant's database to 'failure'
@@ -148,7 +176,7 @@ class CartController extends Controller
                 'status_pay' => 'CANCEL',
                 'transaction_status' => 'PENDING'
             ]);
-            return;
+            
             }
         }else if ($transaction == 'deny') {
             // TODO Set payment status in merchant's database to 'failure' 
@@ -157,35 +185,34 @@ class CartController extends Controller
                 'status_pay' => 'FAILED',
                 'transaction_status' => 'PENDING'
             ]);
-            return;
+            
               
         }else if($transaction == 'pending') {
                 Transaction::where('code',$request->order_id)->update([
                     'status_pay' => 'PENDING',
                     'transaction_status' => 'PENDING'
                 ]);
-            return;
+            
         }else if($transaction == 'expire') {
             
             Transaction::where('code',$request->order_id)->update([
                 'status_pay' => 'EXPIRED',
                 'transaction_status' => 'PENDING'
             ]);
-            return;
+            
         }else if($transaction == 'accept') {
             
             Transaction::where('code',$request->order_id)->update([
                 'status_pay' => 'SUCCESS',
                 'transaction_status' => 'PROCESS'
             ]);
-            return;
+            
         }else if($transaction == 'settlement') {
             Transaction::where('code',$request->order_id)->update([
                 'status_pay' => 'SUCCESS',
                 'transaction_status' => 'PROCESS'
             ]);
-            return;
+            
         }
-        echo json_encode('berhasil');
     }
 }
