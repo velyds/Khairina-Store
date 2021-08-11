@@ -433,6 +433,10 @@
                 _token: CSRFToken,
                 quantity: quantity
             },
+            success: function(ea){
+              ea = JSON.parse(ea)
+              berat.innerHTML = ea.berat;
+            },
         });
     });
     // This button will decrement the value till 0
@@ -469,6 +473,10 @@
             data: {
                 _token: CSRFToken,
                 quantity: quantity
+            },
+            success: function(ea){
+              ea = JSON.parse(ea)
+              berat.innerHTML = ea.berat;
             },
         });
     });
