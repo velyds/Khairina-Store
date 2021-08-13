@@ -52,41 +52,19 @@
                             value="{{ $user->email }}">
                         </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Select address</label>
-                          <select name="selectAddress" id="selectAddress" class="form-control" v-model="addressName">
-                            <option>Pilih alamat</option>
-                              <option value="rumah">Rumah</option>
-                              <option value="kantor">Kantor</option>
-                            </select>
-                        </div>
-                    </div>-->
                     <div class="col-md-6">
                         <div class="form-group">
-                        <label for="address_one">Address 1</label>
+                        <label for="address_one">Address</label>
                         <input 
                             type="text" 
                             class="form-control" 
                             id="address_one" 
                             name="address_one"
-                            placeholder="Cont: JL.Cendana Raya No.1 Rt.00/Rw.00" 
+                            placeholder=" " 
                             value="{{ $user->address_one }}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                        <label for="address_two">Address 2</label>
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            id="address_two" 
-                            name="address_two"
-                            placeholder="Cont: Kel.Tangerang, Kec.Tangerang" 
-                            value="{{ $user->address_two }}">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="provinces_id">Province</label>
                                 <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
@@ -95,7 +73,7 @@
                             <select v-else class="form-control"></select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                                 <label for="regencies_id">City</label>
                                     <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
@@ -104,7 +82,7 @@
                             <select v-else class="form-control"></select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="zip_code">Postal Code</label>
                             <input 

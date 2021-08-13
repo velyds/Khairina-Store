@@ -18,7 +18,6 @@ class CreateAddressTable extends Migration
             $table->string('name');
             $table->integer('users_id');
             $table->longText('address_one');
-            $table->longText('address_two');
             $table->integer('zip_code');
             $table->string('country');
             $table->string('phone_number');

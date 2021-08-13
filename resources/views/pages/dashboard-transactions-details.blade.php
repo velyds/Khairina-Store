@@ -104,10 +104,6 @@
                                                     <div class="product-subtitle">{{ $transactions->user->address_one }}</div>
                                                 </div>
                                             <div class="col-12 col-md-6">
-                                                <div class="product-title">Address II</div>
-                                                    <div class="product-subtitle">{{ $transactions->user->address_two }}</div>
-                                                </div>
-                                            <div class="col-12 col-md-6">
                                                 <div class="product-title">Province</div>
                                                     <div class="product-subtitle">
                                                         {{ App\Models\Province::find($transactions->user->provinces_id)->province }}

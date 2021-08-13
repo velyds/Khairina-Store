@@ -104,17 +104,6 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="address_two">Address 2</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              id="address_two" 
-              name="address_two" 
-              value=" ">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
               <label for="provinces_id">Province</label>
                 <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
                   <option v-for="province in provinces" :value="province.id">@{{ province.province }}</option>

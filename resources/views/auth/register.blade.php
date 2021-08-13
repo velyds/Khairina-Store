@@ -158,7 +158,6 @@
     },
     data(){
         return {
-            email: "example@gmail.com",
             email_unavailable:false
         }
     },
