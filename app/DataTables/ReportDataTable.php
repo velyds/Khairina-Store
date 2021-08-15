@@ -47,7 +47,7 @@ class ReportDataTable extends DataTable
                         'dom'          => 'Bfrtip',
                         'buttons'      => [
                             [
-                                'text' => 'Pilih Bulan',
+                                'text' => 'Pilih Tanggal',
                                 'action' => '
                                 function() { $(`#pilihTanggal`).modal(`show`) }
                                 '

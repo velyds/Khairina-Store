@@ -38,7 +38,7 @@ class UserController extends Controller
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="'. route('user.edit', $item->id) .'">
-                                                Sunting
+                                                Ubah
                                             </a>
                                             <form action="'. route('user.destroy', $item->id) .'"  method="POST">
                                                 '. method_field('delete'). csrf_field().'

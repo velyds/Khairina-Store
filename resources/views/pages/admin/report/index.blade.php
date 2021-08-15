@@ -85,7 +85,7 @@
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text: 'Pilih bulan',
+                    text: 'Pilih Tanggal',
                     action: function() { $(`#pilihTanggal`).modal(`show`) }
                 },
                 {
@@ -123,7 +123,7 @@
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text: 'Pilih bulan',
+                    text: 'Pilih Tanggal',
                     action: function() { $(`#pilihTanggal`).modal(`show`) }
                 },
                 {
