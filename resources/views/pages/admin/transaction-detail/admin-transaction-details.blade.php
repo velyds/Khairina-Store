@@ -1,4 +1,4 @@
-{{-- bener --}}
+
 @extends('layouts.admin')
 
 @section('title')

@@ -88,6 +88,13 @@
             >
               Report
             </a>
+            <a
+              href="{{ route('logout') }}"
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+              class="list-group-item list-group-item-action"
+            >
+              Log out
+            </a>
           </div>
         </div>
 
@@ -127,24 +134,13 @@
                   />
                   {{ Auth::user()->name }}
                 </a>
-                <div class="dropdown-menu">
-                    <a
-                        href="{{ route('logout') }}" 
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                        class="dropdown-item">
-                    Logout
-                    </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-                </div>
               </li>
             </ul>
 
             <ul class="navbar-nav d-block d-lg-none">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  Hi, Vely
+                <a href="{{ route('admin-dashboard') }}" class="nav-link">
+                  Hi, {{ Auth::user()->name }}
                 </a>
               </li>
           </ul>
