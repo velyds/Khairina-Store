@@ -7,12 +7,12 @@
 @section('content')
  <div class="page-content page-home">
     <section class="store-trend-categories">
-      <div class="container">
-        <div class="row">
-          <div class="col-12" data-aos="fade-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up">
             <h5>All Categories</h5>
-          </div>
         </div>
+      </div>
         <div class="row">
           @php
             $incrementCategory = 0

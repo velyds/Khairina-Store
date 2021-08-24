@@ -3,7 +3,6 @@
 @section('title')
     Khairina Store - Jual Pakaian Wanita    
 @endsection
-
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
@@ -60,5 +59,4 @@
     </div>
 </div>
 </div>
-    
 @endsection

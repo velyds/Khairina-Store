@@ -3,7 +3,6 @@
 @section('title')
     Khairina Store - Transaction Detail  
 @endsection
-
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
@@ -175,7 +174,6 @@
     </div>
 </div>
 @endsection
-
 @push('addon-script')
   <script src="/vendor/vue/vue.js"></script>
     <script>

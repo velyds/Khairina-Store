@@ -6,11 +6,7 @@
     <div class="container">
         <div class="row align-items-center row-login">
         <div class="col-lg-6 text-center">
-            <img  
-            src="/images/pic-login.png" 
-            alt="" 
-            class="w-50 mb-4 mb-lg-none"/>
-            </div>
+            <img  src="/images/pic-login.png" alt="" class="w-50 mb-4 mb-lg-none"/></div>
             <div class="col-lg-5"> 
             <h2>
                 Masuk ke akun Anda

@@ -128,7 +128,6 @@
       </section>
     </div>
   </div>
-
 @endsection
 
 @push('addon-script')

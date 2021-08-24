@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-   <div class="page-content page-home"></div>
-    <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-12" data-aos="fade-up">
-            <div class="inner_sec">
-              <h3 class="tittle-contact text-center mb-lg-5 mb-3">Contact</h3>
+<div class="page-content page-home"></div>
+  <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up">
+          <div class="inner_sec">
+          <h3 class="tittle-contact text-center mb-lg-5 mb-3">Contact</h3>
               <div class="address row" style="position:relative">
                 <div class="col-lg-6 address-grid">
                   <div class="row address-info">
