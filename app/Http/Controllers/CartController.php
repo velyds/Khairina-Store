@@ -86,7 +86,7 @@ class CartController extends Controller
     public function success(Request $request)
     {  
         $code = $request->order_id;
-        $dataMidtrans = $this->getStatusMidtrans($code);
+        $dataMidtrans = $this->getStatusMidtrans($code); // ini gak dpt
         $this->callback($dataMidtrans);
         $db = Transaction::where('code',$code)->first();
         return view('pages.midtrans.status', compact('db'));
@@ -99,6 +99,7 @@ class CartController extends Controller
 
     public function getStatusMidtrans($orderId) {
         $auth = "Basic U0ItTWlkLXNlcnZlci0zbGpVdjZWSzlPZTVtQUg5N0ZKSkhsTTM=";
+        
         $curl = curl_init();
 
         curl_setopt_array($curl, array(

@@ -17,7 +17,7 @@
                     class="w-full -ml-8 pl-10 px-4 py-2 border rounded-pill focus:outline-none focus:bg-gray-600"
                     id="search"
                     value="">  
-                <input type="submit" value="" style="visibility: hidden">
+                <input type="submit" value="" style="visibility: hidden"> 
             </form>
         </li>   
     </ul>

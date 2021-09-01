@@ -54,7 +54,7 @@
             <div class="store-details-container col-lg-7" data-aos="fade-up">
               <section class="store-heading">
                   <h1>@{{ productTitle }}</h1>
-                  <div class="price">Rp.{{ number_format($product->price) }}</div>
+                  <div class="price">Rp.{{ number_format($product->price) }}</div> 
 
                   <div class="items-center">
                     <span class="items-center">@{{ stock }}</span>

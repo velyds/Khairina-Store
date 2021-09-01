@@ -87,7 +87,7 @@
                                             </div>
                                         <div class="col-12 col-md-4">
                                             <div class="product-title">Total Amount</div>
-                                                <div class="product-subtitle">@rupiah($transactions->total_price)</div>
+                                                <div class="product-subtitle">@rupiah($transactions->total_price)</div> 
                                             </div>
                                             </div>
                                         </div>

@@ -181,21 +181,30 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Couriers</label>
-                      <select name="couriers" id="couriers" class="form-control" v-model="courierName">
-                        <option>Pilih Kurir</option>
+                      <select name="couriers" id="couriers" v-model="courierName" class="form-control @error('courier') is-invalid @enderror"  required autocomplete="courier">
                         <option value="jne">JNE</option>
                         <option value="tiki">TIKI</option>
                         <option value="pos">POS Indonesia</option>
                       </select>
+                      @error('courier')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group" v-if="services">
+                  <div class="form-group" >
                     <label for="country">Service</label>
-                      <select name="services" id="services" class="form-control" v-model="servicePicked">
+                      <select name="services" id="services" v-model="servicePicked" class="form-control @error('services') is-invalid @enderror"  required autocomplete="services">
                         <option v-for="service in services" :value="service">@{{ service.service }} est @{{ service.cost['0'].etd }} hari</option>
                       </select>
-                  </div>
+                        @error('services')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
             </div>
@@ -218,11 +227,11 @@
                     <div class="product-subtitle">Weight</div>
                   </div>
                   <div class="col-4 col-md-2">
-                    <div class="product-title">Rp @{{ ongkir }}</div>
-                    <div class="product-subtitle">Shipping</div>
+                    <div class="product-title">@{{ ongkir }}</div> 
+                    <div class="product-subtitle">Ongkir</div>
                   </div>
                   <div class="col-4 col-md-2">
-                    <div class="product-title text-success" id="totalBiaya">Rp.{{ number_format($totalPrice ?? 0)  }}</div>
+                    <div class="product-title text-success" id="totalBiaya">Rp.{{ number_format($totalPrice)  }}</div>
                     <div class="product-subtitle">Total</div>
                   </div>
                   <div class="col-8 col-md-3">
