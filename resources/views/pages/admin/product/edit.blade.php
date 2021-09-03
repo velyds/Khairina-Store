@@ -94,7 +94,7 @@ Dashboard Product
                                 </div>
                                 <div class="col text-right my-auto">
                                     <a href="{{ route('createVariant', $item->id) }}" class="btn btn-primary py-2 px-4">
-                                        Add Variant
+                                        Tambah Varian
                                     </a>
                                 </div>
                             </div>
